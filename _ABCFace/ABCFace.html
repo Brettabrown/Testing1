@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ABCFace</title>
+  </head>
+  <!-- javaScript begin,use jQuery -->
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/switch.js"></script>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      background-color: rgb(241, 241, 241);
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 1000px;
+      background-color: white;
+      margin-top: 50px;
+      padding-bottom: 100px;
+      position: relative;
+      box-shadow: 5px 5px 5px rgb(230, 230, 230),
+        -5px -5px 5px rgb(230, 230, 230);
+    }
+    .letter {
+      font-size: 20px;
+      width: 60px;
+      height: 30px;
+      border-radius: 12.5px;
+      border: none;
+      background-color: rgb(248, 240, 94);
+      cursor: pointer;
+      outline: none;
+    }
+    #b,
+    #d,
+    #g,
+    #v,
+    #z,
+    #j,
+    #th2,
+    #ou,
+    #ow,
+    #oi,
+    #oy,
+    #au,
+    #aw,
+    #ooA,
+    #ooB,
+    #l,
+    #r,
+    #w,
+    #m,
+    #n,
+    #ng {
+      background-color: rgb(230, 129, 48);
+    }
+    #ae,
+    #ee,
+    #ie,
+    #oe,
+    #ue {
+      background-color: rgb(248, 90, 92);
+    }
+    #ar,
+    #or,
+    #ir,
+    #ur,
+    #er {
+      background-color: rgb(22, 171, 55);
+    }
+    .back {
+      width: 100px;
+      height: 40px;
+      margin-top: 50px;
+      margin-left: 100px;
+      border-radius: 20px;
+      background-color: rgb(210, 16, 12);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #back {
+      color: white;
+      text-decoration: none;
+    }
+
+    .letter:hover {
+      opacity: 0.6;
+      border: 2px solid black;
+    }
+    #imgShow {
+      width: 350px;
+      height: 500px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .row {
+      margin-top: 15px;
+      margin-left: 100px;
+    }
+    #blank-row {
+      margin-top: 30px;
+    }
+    #special-row {
+      width: 70px;
+      position: absolute;
+      top: 45%;
+      right: 500px;
+    }
+    .images-hidden {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      display: none;
+    }
+    .images-hidden img {
+      display: none;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <div class="back">
+        <a id="back" href="../index.html">Back</a>
+      </div>
+      <div class="row">
+        <button class="letter" id="p">p</button>
+        <button class="letter" id="b">b</button>
+        <button class="letter" id="a" Style="margin-left:30px">a</button>
+        <button class="letter" id="ae">ae</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="t">t</button>
+        <button class="letter" id="d">d</button>
+        <button class="letter" id="e" Style="margin-left:30px">e</button>
+        <button class="letter" id="ee">ee</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="k">k</button>
+        <button class="letter" id="g">g</button>
+        <button class="letter" id="i" Style="margin-left:30px">i</button>
+        <button class="letter" id="ie">ie</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="f">f</button>
+        <button class="letter" id="v">v</button>
+        <button class="letter" id="o" Style="margin-left:30px">o</button>
+        <button class="letter" id="oe">oe</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="s">s</button>
+        <button class="letter" id="z">z</button>
+        <button class="letter" id="u" Style="margin-left:30px">u</button>
+        <button class="letter" id="ue">ue</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="sh">sh</button>
+        <button class="letter" id="ou" Style="margin-left:95px">ou</button>
+        <button class="letter" id="ow">ow</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="ch">ch</button>
+        <button class="letter" id="j">j</button>
+        <button class="letter" id="oi" Style="margin-left:30px">oi</button>
+        <button class="letter" id="oy">oy</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="th">th</button>
+        <button class="letter" id="th2">th</button>
+        <button class="letter" id="au" Style="margin-left:30px">au</button>
+        <button class="letter" id="aw">aw</button>
+      </div>
+      <div class="row" id="blank-row">
+        <button class="letter" id="l">l</button>
+        <button class="letter" id="r">r</button>
+        <button class="letter" id="h">h</button>
+        <button class="letter" id="w">w</button>
+        <button class="letter" id="ar" Style="margin-left:30px">ar</button>
+        <button class="letter" id="or">or</button>
+      </div>
+      <div class="row">
+        <button class="letter" id="m">m</button>
+        <button class="letter" id="n">n</button>
+        <button class="letter" id="ng">ng</button>
+        <button class="letter" id="ir" Style="margin-left:30px">ir</button>
+        <button class="letter" id="ur">ur</button>
+        <button class="letter" id="er">er</button>
+      </div>
+      <div class="row" id="special-row">
+        <button class="letter" id="ooA">oo</button>
+        <button class="letter" id="ooB" Style="margin-top:15px">oo</button>
+      </div>
+      <div id="imgShow">
+        <img id="select" src="Images/FaceBase.jpg" />
+      </div>
+    </div>
+    <script src="./js/loadImages.js"></script>
+  </body>
+</html>
